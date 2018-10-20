@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "list.h"
+#include "stack.h"
 
 typedef struct toy {
 	int serial_number;
@@ -18,7 +18,7 @@ void printToy (void *toyAd) {
 
 int main (int argc, const char *argv[]) {
 
-	List listdeToys = newList();
+	Stack pilhadeToys = newStack();
 
 	Toy *listaDeToys[5];
 
@@ -38,11 +38,11 @@ int main (int argc, const char *argv[]) {
 	strcpy(listaDeToys[4]->model, "O Boss");
 
 	for (int i = 0; i < 5; i++) {
-		listInsert(listdeToys, listaDeToys[i], sizeof(Toy));
+		push(pilhadeToys, listaDeToys[i], sizeof(Toy));
 	}
 
-	printList(listdeToys, printToy);
-	delList(listdeToys, NULL);
+	printStack(pilhadeToys, printToy);
+	delStack(pilhadeToys, NULL);
 
 	return 0;
 }
