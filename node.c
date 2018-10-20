@@ -21,6 +21,7 @@ Node newNode() {
 
 void setNext(Node self, Node next) {
 	self->next = next;
+	next->prev = self;
 	return;
 }
 
@@ -30,6 +31,7 @@ Node getNext(Node x) {
 
 void setPrev(Node self, Node prev) {
 	self->prev = prev;
+	prev->next = self;
 	return;
 }
 
@@ -52,10 +54,28 @@ void printInfo(Node x, void (*print_function)(void *)) {
 	return;
 }
 
-void deleteNode(Node x) {
+size_t sizeofNode() {
+	return sizeof(NODE);
+}
+
+void freeData(void *data_ad, size_t data_size) {
+	char *controller = (char *)data_ad;
+
+	for (int i = 0; i < data_size; i++) {
+		free(controller++);
+	}
+
+	return;
+}
+
+void delNode(Node x, void (*free_function)(void *)) {
 	if (x->prev != NULL)  x->prev->next = NULL;
 	if (x->next != NULL)  x->next->prev = NULL;
-	if (x->info != NULL)  free(x->info);
+	if (x->info != NULL)  {
+		if (free_function == NULL) free(x->info);
+		else free_function(x->info);
+	}
+	
 	free(x);
 
 	return;

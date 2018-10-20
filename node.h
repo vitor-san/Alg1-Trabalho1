@@ -12,6 +12,7 @@
 	void setInfo(Node x, void *data_ad, size_t data_size);
 	void *getInfo(Node x);
 	void printInfo(Node x, void (*print_function)(void *));
-	void deleteNode(Node x);
+	size_t sizeofNode();
+	void delNode(Node x, void (*free_function)(void *));
 
 #endif

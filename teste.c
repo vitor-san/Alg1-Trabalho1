@@ -3,34 +3,46 @@
 #include <string.h>
 #include "stack.h"
 
+typedef struct toy {
+	int serial_number;
+	char model[46];
+} Toy;
 
-void printaString (void *string) {
-	puts((char *)string);
+
+void printToy (void *toyAd) {
+	Toy *toy = (Toy *)toyAd;
+	printf("O numero de serie do brinquedo eh: %d\n", toy->serial_number);
+	printf("O modelo do brinquedo eh: %s\n", toy->model);
 	return;
 }
 
 int main (int argc, const char *argv[]) {
 
-	Stack pilhadeStrings = newStack();
+	Stack pilhadeToys = newStack();
 
-	char word1[] = "Primeiro Elemento";
-	char word2[] = "Segundo Elemento";
-	char word3[] = "Terceiro Elemento";
-	char word4[] = "Quarto Elemento";
-	char word5[] = "Quinto Elemento";
-	char word6[] = "Penultimo Elemento";
-	char word7[] = "Ultimo Elemento";
+	Toy *listaDeToys[5];
 
-	push(pilhadeStrings, word1, strlen(word1));
-	push(pilhadeStrings, word2, strlen(word2));
-	push(pilhadeStrings, word3, strlen(word3));
-	push(pilhadeStrings, word4, strlen(word4));
-	push(pilhadeStrings, word5, strlen(word5));
-	push(pilhadeStrings, word6, strlen(word6));
-	push(pilhadeStrings, word7, strlen(word7));
+	for (int i = 0; i < 5; i++) {
+		listaDeToys[i] = malloc(sizeof(Toy));
+	}
 
-	printStack(pilhadeStrings, printaString);
-	deleteStack(pilhadeStrings);
+	listaDeToys[0]->serial_number = rand();
+	strcpy(listaDeToys[0]->model, "Batman Figure");
+	listaDeToys[1]->serial_number = rand();
+	strcpy(listaDeToys[1]->model,"Yu-Gi-Oh Card");
+	listaDeToys[2]->serial_number = rand();
+	strcpy(listaDeToys[2]->model, "Flash Figure");
+	listaDeToys[3]->serial_number = rand();
+	strcpy(listaDeToys[3]->model, "Honney Poney");
+	listaDeToys[4]->serial_number = rand();
+	strcpy(listaDeToys[4]->model, "O Boss");
+
+	for (int i = 0; i < 5; i++) {
+		push(pilhadeToys, listaDeToys[i], sizeof(Toy));
+	}
+
+	printStack(pilhadeToys, printToy);
+	//delStack(pilhadeToys, NULL);
 
 	return 0;
 }
