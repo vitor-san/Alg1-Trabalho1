@@ -64,14 +64,14 @@ int stackIsEmpty(Stack x) {
 	return (x->top == NULL);
 }
 
-void delete(Node x, void (*free_function)(elem)) {
+void delete2(Node x, void (*free_function)(elem)) {
 	
 	if (getNext(x) == NULL) {
 		delNode(x, free_function);
 		return;
 	}
 
-	delete(getNext(x), free_function);
+	delete2(getNext(x), free_function);
 
 	delNode(x, free_function);
 	
@@ -92,7 +92,7 @@ void printStack(Stack x, void (*print_function)(elem)) {
 
 void delStack(Stack x, void (*free_function)(elem)) {
 	if (x->top == NULL) return;
-	delete(x->top, free_function);
+	delete2(x->top, free_function);
 	free(x);
 	return;
 }
