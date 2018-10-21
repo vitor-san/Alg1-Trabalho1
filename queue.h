@@ -1,18 +1,18 @@
-#ifndef STACK_H
-	#define STACK_H
+#ifndef QUEUE_H
+	#define QUEUE_H
 
 	typedef void* elem;
-	typedef struct stack STACK;
-	typedef STACK* Stack;
+	typedef struct queue QUEUE;
+	typedef QUEUE* Queue;
 
-	Stack newStack();
-	void push(Stack x, elem data, size_t data_size);	//elem data is always an ADDRESS
-	elem pop(Stack x, void (*free_function)(elem));		//if second argument is NULL, the function will use the default free function [free()]
-	elem topStack(Stack x);
-	int nElemsStack(Stack x);
-	size_t sizeofStack(Stack x);
-	int stackIsEmpty(Stack x);
-	void printStack(Stack x, void (*print_function)(elem));
-	void delStack(Stack x, void (*free_function)(elem));	//if second argument is NULL, the function will use the default free function [free()]
+	Queue newQueue();
+	void queueInsert(Queue x, elem data);	//elem data is always an ADDRESS
+	elem queueRemove(Queue x);
+	elem firstQueue(Queue x);
+	int nElemsQueue(Queue x);
+	size_t sizeofQueue(Queue x);
+	int queueIsEmpty(Queue x);
+	void printQueue(Queue x, void (*print_function)(elem));
+	void delQueue(Queue x, void (*free_function)(elem));	//if second argument is NULL(0), the function will use the default free function [free()]
 
 #endif

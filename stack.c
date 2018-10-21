@@ -15,7 +15,7 @@ Stack newStack () {
 	return new;
 }
 
-void push(Stack x, elem data, size_t data_size) {
+void push(Stack x, elem data) {
 
 	if (stackIsEmpty(x)) {
 		x->top = newNode();
@@ -27,20 +27,21 @@ void push(Stack x, elem data, size_t data_size) {
 		x->top = aux;
 	}
 
-	setInfo(x->top, data, data_size);
+	setInfo(x->top, data);
 	x->size++;
 
 	return;
 }
 
-elem pop(Stack x, void (*free_function)(elem)) {
+elem pop(Stack x) {
 
-	if (stackIsEmpty) return NULL;
+	if (stackIsEmpty(x)) return NULL;
 
 	elem info = getInfo(x->top);
 
-	x->top = getNext(x->top);
-	delNode(getPrev(x->top), free_function);
+	Node aux = getNext(x->top);
+	free(x->top);
+	x->top = aux;
 
 	x->size--;
 
@@ -90,6 +91,7 @@ void printStack(Stack x, void (*print_function)(elem)) {
 }
 
 void delStack(Stack x, void (*free_function)(elem)) {
+	if (x->top == NULL) return;
 	delete(x->top, free_function);
 	free(x);
 	return;

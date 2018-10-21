@@ -11,8 +11,8 @@ typedef struct toy {
 
 void printToy (void *toyAd) {
 	Toy *toy = (Toy *)toyAd;
-	printf("O numero de serie do brinquedo eh: %d\n", toy->serial_number);
 	printf("O modelo do brinquedo eh: %s\n", toy->model);
+	printf("O numero de serie do brinquedo eh: %d\n", toy->serial_number);
 	return;
 }
 
@@ -38,8 +38,10 @@ int main (int argc, const char *argv[]) {
 	strcpy(listaDeToys[4]->model, "O Boss");
 
 	for (int i = 0; i < 5; i++) {
-		push(pilhadeToys, listaDeToys[i], sizeof(Toy));
+		push(pilhadeToys, listaDeToys[i]);
 	}
+
+	for (int i = 0; i < 3; i++) pop(pilhadeToys);
 
 	printStack(pilhadeToys, printToy);
 	delStack(pilhadeToys, NULL);

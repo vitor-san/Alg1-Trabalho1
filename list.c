@@ -17,7 +17,7 @@ List newList () {
 	return new;
 }
 
-void listInsert(List x, elem data, size_t data_size) {
+void listInsert(List x, elem data) {
 
 	if (listIsEmpty(x)) {
 		x->beg = newNode();
@@ -26,11 +26,11 @@ void listInsert(List x, elem data, size_t data_size) {
 
 	else {
 		Node aux = newNode();
-		setNext(x->beg, aux);
+		setNext(x->end, aux);
 		x->end = aux;
 	}
 
-	setInfo(x->beg, data, data_size);
+	setInfo(x->end, data);
 	x->size++;
 
 	return;
@@ -65,9 +65,9 @@ Node findNode(List x, int pos) {
 	return aux;
 }
 
-elem listRemove(List x, int pos, void (*free_function)(elem)) {
+elem listRemove(List x, int pos) {
 
-	if (listIsEmpty) return NULL;
+	if (listIsEmpty(x)) return NULL;
 
 	Node theOne = findNode(x, pos);
 	if (theOne == NULL) return NULL;	//error - not on list
@@ -76,9 +76,29 @@ elem listRemove(List x, int pos, void (*free_function)(elem)) {
 
 	elem info = getInfo(theOne);
 
-	setNext(prevOne, nextOne);
-	setPrev(nextOne, prevOne);
-	delNode(theOne, free_function);
+	free(theOne);
+
+	if (nElemsList(x) == 1) {
+		x->beg = NULL;
+		x->end = NULL;
+		x->size--;
+		return info;
+	}
+
+	if (theOne == x->beg) {
+		x->beg = nextOne;
+		setPrev(x->beg, NULL);
+	}
+
+	else if (theOne == x->end) {
+		x->end = prevOne;
+		setNext(x->end, NULL);
+	}
+
+	else {
+		setNext(prevOne, nextOne);
+		setPrev(nextOne, prevOne);
+	}
 
 	x->size--;
 
@@ -128,6 +148,7 @@ void printList(List x, void (*print_function)(elem)) {
 }
 
 void delList(List x, void (*free_function)(elem)) {
+	if (x->beg == NULL) return;
 	delete(x->beg, free_function);
 	free(x);
 	return;
