@@ -1,0 +1,10 @@
+Estático :
+	Para compilar, utilize 'make all' OU gcc -o exec lista_e.c stack.c queue.c main.c
+	Para rodar, utilize ./exec {argumentos}
+	
+Dinâmico :
+	Para compilar, utilize 'make all' OU gcc -o exec toy.c node.c list.c queue.c stack.c main.c
+	Para rodar, utilize ./exec {argumentos}
+
+O compilador utilizado foi o gcc, versão c99, e as bibliotecas externas utilizadas foram 'stdio.h', 'stdlib.h' e 'string.h'.
+O sistema operacional utilizado foi o Linux.

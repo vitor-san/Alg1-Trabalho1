@@ -9,6 +9,7 @@ struct toy {
 
 Toy newToy(int serial_number, const char *model) {
 	Toy new = malloc(sizeof(TOY));
+	new->model = malloc((strlen(model)+1)*sizeof(char));
 	new->serial = serial_number;
 	strcpy(new->model, model);
 

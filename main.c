@@ -23,6 +23,9 @@ int main (int argc, const char *argv[]) {
 		k = atoi(argv[2]),
 		p = atoi(argv[3]);
 
+	//char *arg = malloc(argc*sizeof(char));
+	//for (int i = 0; i < argc; i++) arg[i] = argv[i];
+
 	List esteira = newList();
 	Queue fila_de_caixas = newQueue();
 	Stack caixa_atual = newStack();
@@ -55,6 +58,8 @@ int main (int argc, const char *argv[]) {
 
 	}
 
+	if (!stackIsEmpty(caixa_atual)) queueInsert(fila_de_caixas, caixa_atual);
+
 	int numero_caixa = 1;
 
 	while (!queueIsEmpty(fila_de_caixas)) {
@@ -66,10 +71,10 @@ int main (int argc, const char *argv[]) {
 
 	}
 
-	delToy(brinquedo_atual);
-	delStack(caixa_atual, freeToy);
-	delQueue(fila_de_caixas, freeStack);
-	delList(esteira, freeToy);
+	//delToy(brinquedo_atual);
+	//delStack(caixa_atual, freeToy);
+	//delQueue(fila_de_caixas, freeStack);
+	//delList(esteira, freeToy);
 
 	return 0;
 }

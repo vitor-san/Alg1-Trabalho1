@@ -1,0 +1,42 @@
+	Cada um dos integrantes ficou responsável por uma das aplicações (estática sequencial
+/ dinâmica encadeada), o que se nota na ligeira diferença na escrita dos códigos-fonte.
+	O integrante responsável pela aplicação estática fez os TAD's usando a estrutura toy
+como o objeto dos vetores. Logo, para nao ocorrer conflitos de definições, os TAD's 
+foram incluidos uns nos outros, ou seja a lista foi incluida na pilha e a pilha incluida
+na fila. Observação para lista, que nao utilizou swift de vetor, mas um vetor auxliar 
+para marcar os elementos já retirados.
+	Já o responsável pela dinâmica resolveu fazer os TAD's da maneira mais genérica 
+possível, e para tanto criou o elemento de todos eles como 'void *'. Resolveu fazer
+a lista genérica, deixando-a como "circular" apenas na main.c. Para criar os TAD's
+'Stack', 'Queue' e 'List', utilizou um TAD 'Node', para evitar conflitos e facilitar a
+implementação dos supracitados, além de um TAD 'Toy' para facilitar a implementação final
+da 'main.c'.
+
+Estática:
+	Toy - define a struct utilizada nas outras estruturas
+	List - utilizada para representar a esteira circular
+	Queue - utilizada para organizar o fluxo de caixas de brinquedo
+	Stack - utilizada para emular as caixas
+	
+Dinâmico:
+	Toy - utilizado para realizar as operações da pilha/lista mais facilmente
+	Node - utilizado como alicerce para a criação da pilha, da lista e da fila
+	List - utilizada para representar a esteira
+	Queue - utilizada para organizar o fluxo de caixas de brinquedo
+	Stack - utilizada para emular as caixas, que por sua vez guardam os brinquedos
+
+	Nas estruturas dinâmicas há maior potencialidade na utilização do TAD, já que estas
+não tem um máximo pré-determinado, o que deixa o usuário livre para adicionar quantos
+elementos quiser, sem se preocupar em ficar sem espaço (não literalmente, mas é bem
+dificil do usuário acabar com toda a memória heap).
+	Além disso, em estruturas dinâmicas e encadeadas é muito mais fácil de se remover
+elementos do meio de uma lista, por exemplo, visto que não é necessário fazer shift
+de todos os outros elementos (como ocorre na estática).
+	Por sua vez, as estruturas estáticas permitem uma utilização sem grandes preocupações
+com memory leaks e segfaults, visto que não alocam ou acessam posições de memória fora
+da memória stack (além de sua implementação ser muito mais simples).
+	
+	Considerando o escopo da aplicação, a Lista é melhor sendo dinâmica encadeada 
+(exatamente por conta do shift custoso quando estática) e a Pilha/Fila são melhores 
+quando estáticas, visto que a entrada é pequena (não ultrapassa de 1000), o que pode 
+ser muito bem lidado por uma aplicação estática sequencial.
