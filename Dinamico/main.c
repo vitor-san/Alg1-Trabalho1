@@ -5,26 +5,11 @@
 #include "queue.h"
 #include "toy.h"
 
-void freeStack(void *data) {
-	Stack aux = (Stack) data;
-	delStack(aux, 0);
-	return;
-}
-
-void freeToy(void *data) {
-	Toy aux = (Toy) data;
-	delToy(aux);
-	return;
-}
-
 int main (int argc, const char *argv[]) {
 	
 	int n = atoi(argv[1]),	//atoi eh utilizado para converter os char* do argv em inteiros
 		k = atoi(argv[2]),
 		p = atoi(argv[3]);
-
-	//char *arg = malloc(argc*sizeof(char));
-	//for (int i = 0; i < argc; i++) arg[i] = argv[i];
 
 	List esteira = newList();
 	Queue fila_de_caixas = newQueue();
@@ -69,12 +54,12 @@ int main (int argc, const char *argv[]) {
 
 		printf("caixa %d: brinquedo <%d, %s> - quantidade %d\n", numero_caixa++, getSerial(brinquedo_atual), getModel(brinquedo_atual), nElemsStack(caixa_atual));
 
+		delToy(brinquedo_atual);
+		delStack(caixa_atual);
 	}
 
-	//delToy(brinquedo_atual);
-	//delStack(caixa_atual, freeToy);
-	//delQueue(fila_de_caixas, freeStack);
-	//delList(esteira, freeToy);
+	delQueue(fila_de_caixas);
+	delList(esteira);
 
 	return 0;
 }

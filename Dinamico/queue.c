@@ -77,20 +77,6 @@ int queueIsEmpty(Queue x) {
 	return (x->beg == NULL);
 }
 
-void delete3(Node x, void (*free_function)(elem)) {
-	
-	if (getNext(x) == NULL) {
-		delNode(x, free_function);
-		return;
-	}
-
-	delete3(getNext(x), free_function);
-
-	delNode(x, free_function);
-	
-	return;
-}
-
 void printQueue(Queue x, void (*print_function)(elem)) {
 
 	Node aux = x->beg;
@@ -104,8 +90,6 @@ void printQueue(Queue x, void (*print_function)(elem)) {
 }
 
 void delQueue(Queue x, void (*free_function)(elem)) {
-	if (x->beg == NULL) return;
-	delete3(x->beg, free_function);
 	free(x);
 	return;
 }

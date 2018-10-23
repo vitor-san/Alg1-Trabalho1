@@ -1,6 +1,6 @@
-#include "lista.h"
+#include "list.h"
 
-#define sizes 1000
+#define sizes 500
 
 typedef struct stack {
 	Toy v[sizes];

@@ -13,6 +13,6 @@
 	size_t sizeofQueue(Queue x);
 	int queueIsEmpty(Queue x);
 	void printQueue(Queue x, void (*print_function)(elem));
-	void delQueue(Queue x, void (*free_function)(elem));	//if second argument is NULL(0), the function will use the default free function [free()]
+	void delQueue(Queue x);	//be sure Queue is empty before deleting it. Otherwise, memory leak may occur.
 
 #endif

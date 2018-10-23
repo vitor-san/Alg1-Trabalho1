@@ -1,4 +1,4 @@
-#include "lista.h"
+#include "list.h"
 
 void create_list(List *l) {
 	l->begin = 0;

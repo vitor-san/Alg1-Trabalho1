@@ -2,7 +2,7 @@
 
 #include "toy.h"
 
-#define size 1000
+#define size 500
 
 typedef struct list {
 	Toy v[size];

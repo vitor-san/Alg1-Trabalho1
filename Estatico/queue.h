@@ -1,6 +1,6 @@
 #include "stack.h"
 
-#define sizeq 1000
+#define sizeq 500
 
 typedef struct queue {
 	Stack v[sizeq];

@@ -13,6 +13,6 @@
 	size_t sizeofList(List x);
 	int listIsEmpty(List x);
 	void printList(List x, void (*print_function)(elem));
-	void delList(List x, void (*free_function)(elem));	//if second argument is NULL(0), the function will use the default free function [free()]
+	void delList(List x);	//be sure List is empty before deleting it. Otherwise, memory leak may occur.
 
 #endif

@@ -13,6 +13,6 @@
 	size_t sizeofStack(Stack x);
 	int stackIsEmpty(Stack x);
 	void printStack(Stack x, void (*print_function)(elem));
-	void delStack(Stack x, void (*free_function)(elem));	//if second argument is NULL(0), the function will use the default free function [free()]
+	void delStack(Stack x);	//be sure Stack is empty before deleting it. Otherwise, memory leak may occur.
 
 #endif

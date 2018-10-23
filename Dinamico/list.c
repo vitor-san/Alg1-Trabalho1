@@ -121,20 +121,6 @@ int listIsEmpty(List x) {
 	return (x->beg == NULL);
 }
 
-void delete1(Node x, void (*free_function)(elem)) {
-	
-	if (getNext(x) == NULL) {
-		delNode(x, free_function);
-		return;
-	}
-
-	delete1(getNext(x), free_function);
-
-	delNode(x, free_function);
-	
-	return;
-}
-
 void printList(List x, void (*print_function)(elem)) {
 
 	Node aux = x->beg;
@@ -148,8 +134,6 @@ void printList(List x, void (*print_function)(elem)) {
 }
 
 void delList(List x, void (*free_function)(elem)) {
-	if (x->beg == NULL) return;
-	delete1(x->beg, free_function);
 	free(x);
 	return;
 }
